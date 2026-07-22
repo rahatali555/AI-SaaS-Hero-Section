@@ -1,93 +1,55 @@
-# 🚀 AI SaaS Hero Section
+# Premium AI SaaS
 
-A premium, production-ready AI SaaS Hero Section built with modern frontend technologies and enterprise-level architecture.
+This repository is the production foundation for a future AI SaaS application.
+It intentionally contains no product or marketing features yet.
 
-This project showcases how a high-converting SaaS landing page hero can be designed and developed using reusable React components, clean TypeScript, responsive layouts, and scalable frontend architecture. The implementation emphasizes performance, accessibility, maintainability, and smooth user experience while following industry best practices.
+## Stack
 
----
+- Next.js 16 and React 19, using the App Router
+- TypeScript with strict compiler settings
+- Tailwind CSS 4 with semantic design tokens
+- shadcn/ui primitives built on Base UI
+- ESLint with Next.js Core Web Vitals rules
+- Prettier with Tailwind class sorting
 
-## 🎯 Objectives
+## Commands
 
-- Build a premium AI SaaS hero section inspired by modern SaaS products.
-- Demonstrate reusable component architecture.
-- Follow clean code and scalable project structure.
-- Ensure accessibility and responsive design.
-- Optimize performance using modern frontend techniques.
-- Maintain production-quality standards throughout development.
+```bash
+npm run dev          # Start the local development server
+npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript without emitting files
+npm run format       # Format supported files
+npm run format:check # Verify formatting
+npm run check        # Run lint, typecheck, and format verification
+npm run build        # Produce an optimized production build
+npm run start        # Serve the production build
+```
 
----
-
-## 🛠 Tech Stack
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Framer Motion
-- Lucide React
-- React Hook Form
-- Zod
-- Zustand
-- TanStack Query
-- next-themes
-- clsx
-- tailwind-merge
-- class-variance-authority
-
----
-
-## ✨ Features
-
-- Responsive Design
-- Dark & Light Mode
-- Smooth Animations
-- Reusable Components
-- Accessible UI (WCAG-Friendly)
-- SEO-Friendly Structure
-- Optimized Performance
-- Production-Ready Codebase
-- Scalable Folder Architecture
-- Modern UI/UX Principles
-
----
-
-## 📂 Project Status
-
-🚧 Currently under active development.
-
-Planned implementation includes:
-
-- Hero Section
-- Navigation
-- Reusable UI Components
-- Dark Mode
-- Responsive Layout
-- Accessibility Improvements
-- Performance Optimization
-- Animations
-- Deployment on Vercel
-
----
-
-## 📁 Folder Structure
+## Structure
 
 ```text
 src/
-├── app/
-├── components/
-│   ├── hero/
-│   ├── ui/
-│   └── layout/
-├── hooks/
-├── lib/
-├── utils/
-├── types/
-└── assets/
+  app/            # Routes, metadata, layouts, and global CSS
+  components/ui/  # Shared shadcn/Base UI primitives only
+  lib/            # Framework-agnostic shared utilities
 ```
 
----
+Create a feature directory only when a feature has more than one meaningful
+module. Keep route components server-rendered by default; introduce a client
+component only for browser APIs, state, event handlers, or client-only hooks.
 
-## 📜 License
+## Design system
 
-This project is created for learning, portfolio demonstration, and showcasing production-quality frontend engineering practices.
+`src/app/globals.css` is the single source of truth for semantic colors,
+typography, radii, shadows, motion easing, containers, and breakpoints. It uses
+system-preference dark mode, which needs no client-side provider. Add a persisted
+theme provider only alongside a user-facing theme control.
+
+The application uses a deterministic system font stack for now. Add a licensed
+local variable font through `next/font/local` when a brand font is selected.
+
+## Dependency policy
+
+Dependencies are added only when the source imports them or a development tool
+uses them. Run `npm ci` in CI to install exactly the versions captured in
+`package-lock.json`.
